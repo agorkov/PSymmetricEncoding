@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{F87A612B-ACE8-4304-A71D-94BF7E92DEBD}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="SteganoLib.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="PMain.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="CryptLib.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="SteganoLib">
+			<MSBuild Projects="SteganoLib.dproj"/>
+		</Target>
+		<Target Name="SteganoLib:Clean">
+			<MSBuild Projects="SteganoLib.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SteganoLib:Make">
+			<MSBuild Projects="SteganoLib.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="PMain">
+			<MSBuild Projects="PMain.dproj"/>
+		</Target>
+		<Target Name="PMain:Clean">
+			<MSBuild Projects="PMain.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="PMain:Make">
+			<MSBuild Projects="PMain.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="CryptLib">
+			<MSBuild Projects="CryptLib.dproj"/>
+		</Target>
+		<Target Name="CryptLib:Clean">
+			<MSBuild Projects="CryptLib.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="CryptLib:Make">
+			<MSBuild Projects="CryptLib.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="SteganoLib;PMain;CryptLib"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="SteganoLib:Clean;PMain:Clean;CryptLib:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="SteganoLib:Make;PMain:Make;CryptLib:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
